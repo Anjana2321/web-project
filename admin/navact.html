@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Navbar Highlight</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    /* Style the active class for navbar items */
+    .navbar-dark .navbar-nav .nav-item.nav-link.active {
+      background-color: #666 !important; /* Active background color */
+      color: white; /* Active text color */
+      border-radius: 4px; /* Optional: add rounded corners */
+    }
+
+    /* Optionally, style the hover state for better UX */
+    .navbar-dark .navbar-nav .nav-item.nav-link:hover {
+      background-color: #555; /* Hover background color */
+      color: white; /* Hover text color */
+      border-radius: 4px; /* Optional: add rounded corners */
+    }
+
+    /* Optional: Add transition for smooth background color change */
+    .navbar-dark .navbar-nav .nav-item.nav-link {
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar bg-blue navbar-expand-xl navbar-dark p-0 sticky-top">
+    <div class="container">
+      <a href="admin-home.php" class="navbar-brand"><img class="nav-logo" alt="Brand" src="../Image/LOGO.png"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarOffcanvas" aria-controls="navbarOffcanvas" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-end" id="navbarOffcanvas" tabindex="-1" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title text-light" id="offcanvasNavbarLabel"></h5>
+          <button type="button" class="btn-close btn-close-dark text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <div class="navbar-nav justify-content-end flex-grow-1 pe-3 align-items-center">
+            <a class="nav-item nav-link" href="admin-home.php"><i class="fa me-2 fa-home" aria-hidden="true"></i> Home</a>
+            <a class="nav-item nav-link" href="regform.php"><i class="fa me-2 fa-file-text-o" aria-hidden="true"></i> Registration</a>
+            <a class="nav-item nav-link" href="student-profile.php"><i class="fa me-2 fa-graduation-cap" aria-hidden="true"></i> Student Profile</a>
+            <a class="nav-item nav-link" href="admin_financial.php"><i class="fa me-2 fa-files-o" aria-hidden="true"></i> Finance Report</a>
+            <a class="nav-item nav-link" href="admin-fee-detail.php"><i class="fa me-2 fa-money" aria-hidden="true"></i> Fees Details</a>
+            <a class="nav-item nav-link" href="admin-calendar.php"><i class="fa me-2 fa-calendar-o" aria-hidden="true"></i> Calendar</a>
+            <a class="nav-item nav-link mob-nav" href="admin-profile.php"><i class="fa me-2 fa-user" aria-hidden="true"></i> Profile</a>
+            <a class="nav-item nav-link mob-nav" href="change-password.php"><i class="fa me-2 fa-lock" aria-hidden="true"></i> Change Password</a>
+            <a class="nav-item nav-link mob-nav" href="../index.php"><i class="fa me-2 fa-sign-out" aria-hidden="true"></i> Logout</a>
+          </div>
+          <div class="d-flex">
+            <a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="../Image/admin.png" alt="profile" class="head-prof" />
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="admin-profile.php"><i class="fa me-2 fa-user" aria-hidden="true"></i> Profile</a></li>
+              <li><a class="dropdown-item" href="change-password.php"><i class="fa me-2 fa-lock" aria-hidden="true"></i> Change Password</a></li>
+            </ul>
+            <a href="../index.php" class="logout"><i class="fa me-2 fa-sign-out" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <script>
+    // Add active class to the current nav item (highlight it)
+    document.addEventListener("DOMContentLoaded", function () {
+      var navLinks = document.querySelectorAll('.nav-link');
+      navLinks.forEach(function(link) {
+        link.addEventListener('click', function() {
+          // Remove active class from all links
+          navLinks.forEach(function(link) {
+            link.classList.remove('active');
+          });
+          // Add active class to the clicked link
+          this.classList.add('active');
+        });
+      });
+
+      // Optionally, add active class based on current URL
+      var currentLocation = window.location.href;
+      navLinks.forEach(function(link) {
+        if (currentLocation.includes(link.getAttribute('href'))) {
+          link.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
